@@ -6,6 +6,9 @@ use App\Http\Controllers\CategoryProductController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/category-product',[CategoryProductController::class,'index'])->name('category_product.index');
 Route::get('/category-product/create', [CategoryProductController::class,'create'])->name('category_product.create');
