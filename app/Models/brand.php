@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Providers;
+namespace App\Models;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class AppServiceProvider extends ServiceProvider
+class Brand extends Model
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+    use HasFactory;
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        Paginator::useBootstrapFive();
-    }
+    // Menentukan kolom yang dapat diisi secara massal
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    // Jika tabel yang digunakan tidak sesuai dengan nama model secara konvensi, tambahkan baris berikut:
+    // protected $table = 'brands';
 }
