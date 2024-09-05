@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::controller(LoginRegisterController::class)->group(function() {
 Route::get('/register', 'register')->name('register');
 Route::post('/store', 'store')->name('store');
@@ -12,8 +16,9 @@ Route::get('/login', 'login')->name('login');
     Route::get('/home', 'home')->name('home');
     Route::post('/logout', 'logout')->name('logout');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
+
+Route::get('/dashboard', function(){
+    return view('admin.auth.dashboard');
 });
 
 Route::get('/category-product',[CategoryProductController::class,'index'])->name('category_product.index');
