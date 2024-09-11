@@ -14,12 +14,26 @@ Route::post('/store', 'store')->name('store');
 Route::get('/login', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/home', 'home')->name('home');
-    Route::post('/logout', 'logout')->name('logout');
+    Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
 });
 
-Route::get('/dashboard', function(){
-    return view('admin.auth.dashboard');
+Route::group(['middleware' => ['auth']], function() {
+    /**
+     * Dashboard Routes
+     */
+    Route::get('/dashboard', function(){
+        return view('admin.auth.dashboard');
+    })->name('dashboard');    
+
+
+    /**
+     * Logout Routes
+     */
+    Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
 });
+
+
 
 Route::get('/category-product',[CategoryProductController::class,'index'])->name('category_product.index');
 Route::get('/category-product/create', [CategoryProductController::class,'create'])->name('category_product.create');

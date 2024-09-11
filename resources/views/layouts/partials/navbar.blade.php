@@ -19,14 +19,13 @@
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                    <a class="dropdown-item" href="#!">Logout</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <!-- Tombol Logout di Sidebar -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                 @csrf
+                </form>
 
-                        <a :href="route{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            this.closest('from').submit();">
-                            {{ __('log Out') }}
+
                 </li>
             </ul>
         </li>
